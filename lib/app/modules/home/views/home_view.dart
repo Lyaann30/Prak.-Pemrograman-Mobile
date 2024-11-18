@@ -17,30 +17,34 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
 
-    // Future.delayed untuk menunda proses cek login selama 10 detik
-    Future.delayed(const Duration(seconds: 10), () async {
-      await homeController.checkLoginStatus(); // Cek status login
+    // Langsung cek status login dan lakukan aksi yang sesuai
+    _checkLoginAndPlayAudio();
+  }
 
-      if (homeController.isLoggedIn.value) {
-        // Jika user login dan audio URL tersedia, putar audio maksimal 7 detik
-        if (homeController.audioUrl.value.isNotEmpty) {
-          try {
-            await _audioPlayer.play(UrlSource(homeController.audioUrl.value));
-            // Menghentikan audio setelah 7 detik
-            Future.delayed(const Duration(seconds: 7), () async {
-              await _audioPlayer.stop();
-            });
-          } catch (e) {
-            print('Failed to play audio: $e');
-          }
+  Future<void> _checkLoginAndPlayAudio() async {
+    await homeController.checkLoginStatus(); // Cek status login
+
+    if (homeController.isLoggedIn.value) {
+      // Jika user login dan audio URL tersedia, putar audio
+      if (homeController.audioUrl.value.isNotEmpty) {
+        try {
+          // Putar audio langsung saat halaman home dibuka
+          await _audioPlayer.play(UrlSource(homeController.audioUrl.value));
+
+          // Menghentikan audio setelah 5 detik
+          Future.delayed(const Duration(seconds: 5), () async {
+            await _audioPlayer.stop();
+          });
+        } catch (e) {
+          print('Failed to play audio: $e');
         }
-        // Arahkan ke halaman profil setelah audio selesai atau langsung
-        Get.offNamed(Routes.HOMEPAGE);
-      } else {
-        // Jika belum login, arahkan ke halaman login
-        Get.offNamed(Routes.LOGIN);
       }
-    });
+      // Arahkan ke halaman profil setelah audio selesai atau langsung
+      Get.offNamed(Routes.HOMEPAGE);
+    } else {
+      // Jika belum login, arahkan ke halaman login
+      Get.offNamed(Routes.LOGIN);
+    }
   }
 
   @override

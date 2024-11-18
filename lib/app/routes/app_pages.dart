@@ -21,6 +21,8 @@ import '../modules/schedule/bindings/schedule_binding.dart';
 import '../modules/schedule/views/schedule_view.dart';
 import '../modules/setting_audio/bindings/setting_audio_binding.dart';
 import '../modules/setting_audio/views/setting_audio_view.dart';
+import '../modules/test1/bindings/test1_binding.dart';
+import '../modules/test1/views/test1_view.dart';
 
 part 'app_routes.dart';
 
@@ -82,6 +84,11 @@ class AppPages {
       name: _Paths.SETTING_AUDIO,
       page: () => SettingAudioView(),
       binding: SettingAudioBinding(),
+    ),
+    GetPage(
+      name: _Paths.TEST1,
+      page: () => const Test1View(),
+      binding: Test1Binding(),
     ),
   ];
 }

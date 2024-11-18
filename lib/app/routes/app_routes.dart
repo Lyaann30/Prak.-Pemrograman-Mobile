@@ -15,6 +15,7 @@ abstract class Routes {
   static const CREATE_SCHEDULE = _Paths.CREATE_SCHEDULE;
   static const SCHEDULE = _Paths.SCHEDULE;
   static const SETTING_AUDIO = _Paths.SETTING_AUDIO;
+  static const TEST1 = _Paths.TEST1;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const CREATE_SCHEDULE = '/create-schedule';
   static const SCHEDULE = '/schedule';
   static const SETTING_AUDIO = '/setting-audio';
+  static const TEST1 = '/test1';
 }
