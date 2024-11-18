@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:myapp/app/modules/profile/controllers/profile_controller.dart';
+import 'package:myapp/app/modules/setting_audio/views/setting_audio_view.dart';
 import 'package:myapp/app/routes/app_pages.dart';
 import 'dart:io';
 
@@ -232,26 +233,43 @@ class _ProfileViewState extends State<ProfileView> {
                         // Additional TextFields for phone, email, etc., similar to the above TextField
                         SizedBox(height: 30),
                         Center(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (_isEditable) {
-                                _profileController.saveDataToFirestore(
-                                    _profileController.getCurrentUserId()!);
-                              }
-                              setState(() {
-                                _isEditable = !_isEditable;
-                              });
-                            },
-                            child: Text(
-                              _isEditable ? 'Save Profile' : 'Update Profile',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromRGBO(31, 31, 31, 1),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 15),
-                            ),
+                          child: Column(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (_isEditable) {
+                                    _profileController.saveDataToFirestore(
+                                        _profileController.getCurrentUserId()!);
+                                  }
+                                  setState(() {
+                                    _isEditable = !_isEditable;
+                                  });
+                                },
+                                child: Text(
+                                  _isEditable ? 'Save Profile' : 'Update Profile',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color.fromRGBO(31, 31, 31, 1),
+                                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                                ),
+                              ),
+                              SizedBox(height: 15), // Spacer between the buttons
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Navigate to the Settings Opening Audio page
+                                  Get.to(SettingAudioView());
+                                },
+                                child: Text(
+                                  'Setting Opening Audio',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color.fromRGBO(31, 31, 31, 1),
+                                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],

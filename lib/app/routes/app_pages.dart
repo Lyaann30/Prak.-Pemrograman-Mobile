@@ -19,6 +19,8 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/schedule/bindings/schedule_binding.dart';
 import '../modules/schedule/views/schedule_view.dart';
+import '../modules/setting_audio/bindings/setting_audio_binding.dart';
+import '../modules/setting_audio/views/setting_audio_view.dart';
 
 part 'app_routes.dart';
 
@@ -68,13 +70,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CREATE_SCHEDULE,
-      page: () => CreateScheduleView(isEdit:false),
+      page: () => CreateScheduleView(isEdit: false),
       binding: CreateScheduleBinding(),
     ),
     GetPage(
       name: _Paths.SCHEDULE,
       page: () => ScheduleView(),
       binding: ScheduleBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTING_AUDIO,
+      page: () => SettingAudioView(),
+      binding: SettingAudioBinding(),
     ),
   ];
 }
